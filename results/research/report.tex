@@ -1,0 +1,451 @@
+\documentclass[11pt,letterpaper]{article}\usepackage[margin=1in]{geometry}\usepackage[T1]{fontenc}\usepackage{lmodern}\usepackage{amsmath,amssymb,booktabs,longtable,array}\usepackage[hidelinks]{hyperref}\hypersetup{pdftitle={Bayesian Modeling of Pulmonary Fibrosis Trajectories},pdfauthor={Junguang Jia}}\setlength{\parskip}{0.35em}\setlength{\parindent}{0pt}\setlength{\emergencystretch}{2em}\title{Bayesian Modeling of Pulmonary Fibrosis Trajectories}\author{Junguang Jia}\date{}\begin{document}\maketitle
+\textbf{Run:} research\quad\textbf{Mode:} research\quad\textbf{Status:} verified
+
+\textbf{Computational status.} The required research fits meet the recorded sampling gates. This establishes computational acceptance, not substantive model adequacy; predictive discrepancies and observational limitations remain relevant.
+
+\begin{abstract}
+This exploratory longitudinal study estimates forced vital capacity (FVC) change and between-patient variation, examines covariate associations, and assesses prediction for patients without observed FVC histories. Pooled, hierarchical, and covariate-adjusted Gaussian models are compared using patient-level validation. The selected input contains 176 patients, 1549 measurements, and 1542 distinct patient-weeks.
+
+The primary hierarchical posterior mean slope is -4.25 mL/week (95\% credible interval [-5.12, -3.40]). This is a model-based observational estimate, not a causal effect. Residual predictive checks flag remaining serial dependence, limiting model adequacy and interval interpretation.
+
+In internal patient-level validation, the adjusted model's mean joint log score exceeds H's by 0.187 (descriptive SE 0.043). This comparison concerns previously unseen patients from the same data source and does not establish external validity.
+
+\end{abstract}\section{Introduction}
+Longitudinal FVC provides information about overall change and heterogeneity in patient trajectories. The primary question concerns a population time slope. Adjusted associations and prediction for a previously unseen patient are distinct secondary questions. This analysis is exploratory and does not evaluate treatment effects or a clinical decision rule.
+
+FVC is a spirometric measure of lung function. The OSIC competition describes a prediction task using baseline imaging and clinical information~\cite{osic}. The present study uses only tabular covariates and asks about a patient with no observed FVC history; it is not a reproduction of that competition task or a comparison with leaderboard scores.
+
+\clearpage\section{Data}
+\begingroup\small\setlength{\tabcolsep}{4pt}\begin{longtable}{lr}\caption{Cohort summaries calculated from this run's input.}\\\toprule
+Aggregate characteristic & Value \\
+\midrule\endfirsthead\toprule
+Aggregate characteristic & Value \\
+\midrule\endhead\bottomrule\endfoot
+raw rows & 1549 \\
+patients & 176 \\
+patient weeks & 1542 \\
+analyzed rows & 1542 \\
+repeated week extra rows & 7 \\
+current smokers & 9 \\
+female current smokers & 2 \\
+male patients & 139 \\
+female patients & 37 \\
+ex smokers & 118 \\
+never smokers & 49 \\
+min week & -5 \\
+max week & 133 \\
+\end{longtable}\endgroup
+The main analysis averages FVC for repeated records from the same patient and week; an H/C sensitivity analysis retains every original row. Invalid inputs, missing model fields, inconsistent patient-level covariates, and exact duplicate analysis records require source review. The Percent field is excluded. Original week zero is retained and is not interpreted as diagnosis.
+
+There are 9 current smokers, including 2 female current smokers. Associations involving these small subgroups are exploratory.
+
+The research input schema resembles the tabular component of the \href{https://www.kaggle.com/competitions/osic-pulmonary-fibrosis-progression/data}{OSIC Pulmonary Fibrosis Progression competition}; exact provenance of the local file has not been independently verified. Obtain authorized data directly from its provider and review the \href{https://www.kaggle.com/competitions/osic-pulmonary-fibrosis-progression/rules}{applicable rules}. No real patient records, identifiers, individual predictions, or observed trajectories are distributed. Synthetic demonstrations are independently generated.
+
+\section{Methods}\subsection{Models and estimands}
+For patient $i$ at visit $j$, set $y_{ij}=\mathrm{FVC}_{ij}/1000$ (L), $t_{ij}=\mathrm{Weeks}_{ij}/52$ (years), and $a_i=(\mathrm{Age}_i-65)/10$. Let $x_i$ contain centered age, male, current-smoker, and never-smoker indicators. The reference profile is female, former smoker, age 65.
+
+\begin{align*}\mathrm{P}:\quad y_{ij}&=\alpha+\beta_t t_{ij}+\epsilon_{ij},\\\mathrm{H}:\quad y_{ij}&=\alpha+\beta_t t_{ij}+b_{0i}+b_{1i}t_{ij}+\epsilon_{ij},\\\mathrm{C}:\quad y_{ij}&=\alpha+\beta_t t_{ij}+x_i^\top\gamma+t_{ij}x_i^\top\delta+b_{0i}+b_{1i}t_{ij}+\epsilon_{ij},\\\epsilon_{ij}&\sim N(0,\sigma^2),\qquad b_i\sim N_2(0,D\Omega D),\end{align*}
+Here $D=\operatorname{diag}(\tau_0,\tau_1)$. H and C use the noncentered representation $b_i=DL_\Omega z_i$, $z_i\sim N_2(0,I)$, with no sample sum-to-zero constraint. Conditional residuals are independent. The \href{https://mc-stan.org/docs/stan-users-guide/regression.html}{Stan User's Guide} describes this hierarchical construction.
+
+\[s_H=\frac{1000}{52}\beta_t,\qquad{}s_C=\frac{1000}{52}\left(\beta_t+\frac1N\sum_{i=1}^N x_i^\top\delta\right).\]
+The C overall slope gives each patient's covariates equal weight. Its reference-profile slope is $1000\beta_t/52$, a separate estimand. All principal slopes and slope SDs are reported in mL/week; intercept SDs and level contrasts are in mL.
+
+\subsection{Priors and sampling}
+\begingroup\small\setlength{\tabcolsep}{4pt}\begin{longtable}{ll}\caption{Analyst-specified priors; locations and scales are not estimated from FVC outcomes.}\\\toprule
+Parameter & Main prior on transformed scale \\
+\midrule\endfirsthead\toprule
+Parameter & Main prior on transformed scale \\
+\midrule\endhead\bottomrule\endfoot
+Intercept & $N(3,1.5^2)$ \\
+Time slope & $N(0,0.5^2)$ \\
+Age main effect & $N(0,0.5^2)$ \\
+Sex or smoking main effect & $N(0,1)$ \\
+Time by age & $N(0,0.25^2)$ \\
+Time by sex or smoking & $N(0,0.5^2)$ \\
+Random-intercept SD & $\operatorname{HalfNormal}(0,1)$ \\
+Random-slope SD; residual SD & $\operatorname{HalfNormal}(0,0.5)$ \\
+Random-effect correlation & $\Omega\sim\operatorname{LKJ}(2)$ \\
+\end{longtable}\endgroup
+HalfNormal arguments give location and scale. Prior predictive simulation precedes fitting and conditions on the design, not FVC. H/C sensitivity fits multiply every normal and half-normal scale by 0.5 and 2, retaining locations and LKJ(2). Gaussian priors may imply negative FVC; this is exposed in the prior checks rather than silently truncated.
+
+The research workflow contains 24 fits: three main fits, 15 validation fits, four prior-scale sensitivity fits, and two all-row sensitivity fits. Defaults are four chains, 6,000 iterations including 3,000 warmup, adapt-delta 0.95, maximum tree depth 12, and base seed 4224. A failed non-smoke diagnostic gate permits one retry at 10,000 iterations, 5,000 warmup, and adapt-delta 0.99; maximum depth becomes 14 only after tree-depth hits. If that retry fails, a targeted third attempt raises maximum depth to 14 for depth hits and extends to 20,000 iterations with 5,000 warmup for R-hat or ESS failure, retaining adapt-delta 0.99. A further failure stops the run as unverified. These computational extensions leave data, priors, and model structure unchanged and do not use predictive performance. Original attempts are preserved; actual accepted settings appear below.
+
+\subsection{New-patient validation}
+Five folds are assigned by patient, stratified by smoking status using seed 4224. P/H/C share the allocation. Held-out FVC is used only for scoring. Covariates and visit times are available, but no patient's held-out measurements estimate their random effects. Conditional on one posterior draw, the joint response is
+
+\[y_i\mid\theta,\mathcal D_{-k}\sim N_{n_i}\!\left(X_i\beta,Z_iD\Omega DZ_i^\top+\sigma^2 I\right),\qquad Z_i=[\mathbf1,t_i].\]
+P omits the random-effect covariance. For each patient, the joint predictive density is averaged over all retained posterior draws before taking its logarithm. The reported log score is on the mL scale, using the adjustment $-n_i\log(1000)$ to the litre-scale log density. It is not a sum of separately integrated visit scores. The primary aggregate gives each patient equal weight.
+
+RMSE is the square root of the patient-average within-patient MSE. MAE, interval coverage, and width likewise first average over visits within each patient. Up to 1,000 posterior predictive draws preserve shared patient effects across visits. Intervals are marginal 95\% visit intervals, not simultaneous bands. Paired score-difference standard errors are descriptive and do not fully reflect dependence across folds. The prediction target follows the group-level distinction in the \href{https://mc-stan.org/loo/articles/online-only/faq.html}{loo cross-validation FAQ}; this is internal, not external, validation.
+
+\section{Results}\subsection{Population change and heterogeneity}
+\begingroup\small\setlength{\tabcolsep}{4pt}\begin{longtable}{llrrr}\caption{Primary posterior summaries. Correlations are unitless.}\\\toprule
+Model & Estimand & Mean & 95\% credible interval & Pr(negative) \\
+\midrule\endfirsthead\toprule
+Model & Estimand & Mean & 95\% credible interval & Pr(negative) \\
+\midrule\endhead\bottomrule\endfoot
+P & Overall slope (mL/week) & -1.50 & [-3.28, 0.25] & 0.953 \\
+H & Overall slope (mL/week) & -4.25 & [-5.12, -3.40] & 1.000 \\
+H & Intercept SD (mL) & 832.49 & [754.52, 924.77] & 0.000 \\
+H & Slope SD (mL/week) & 5.11 & [4.41, 5.88] & 0.000 \\
+H & Intercept--slope correlation & -0.14 & [-0.29, 0.03] & 0.950 \\
+C & Overall slope (mL/week) & -4.23 & [-5.07, -3.41] & 1.000 \\
+C & Intercept SD (mL) & 712.89 & [641.98, 796.14] & 0.000 \\
+C & Slope SD (mL/week) & 4.84 & [4.16, 5.60] & 0.000 \\
+C & Intercept--slope correlation & -0.14 & [-0.30, 0.03] & 0.942 \\
+\end{longtable}\endgroup
+\begin{figure}[htbp]\centering\setlength{\unitlength}{1pt}
+\begin{picture}(455,114)
+\put(110,32){\line(1,0){325}}
+\multiput(388.571,32)(0,6){12}{\line(0,1){2}}
+\put(110.000,30){\line(0,1){4}}
+\put(110.000,20){\makebox(0,0){\scriptsize $-6.0$}}
+\put(156.429,30){\line(0,1){4}}
+\put(156.429,20){\makebox(0,0){\scriptsize $-5.0$}}
+\put(202.857,30){\line(0,1){4}}
+\put(202.857,20){\makebox(0,0){\scriptsize $-4.0$}}
+\put(249.286,30){\line(0,1){4}}
+\put(249.286,20){\makebox(0,0){\scriptsize $-3.0$}}
+\put(295.714,30){\line(0,1){4}}
+\put(295.714,20){\makebox(0,0){\scriptsize $-2.0$}}
+\put(342.143,30){\line(0,1){4}}
+\put(342.143,20){\makebox(0,0){\scriptsize $-1.0$}}
+\put(388.571,30){\line(0,1){4}}
+\put(388.571,20){\makebox(0,0){\scriptsize $0.0$}}
+\put(435.000,30){\line(0,1){4}}
+\put(435.000,20){\makebox(0,0){\scriptsize $1.0$}}
+\put(272.5,5){\makebox(0,0){\small Slope (mL/week)}}
+\put(102,100){\makebox(0,0)[r]{\small P: overall slope}}
+\put(236.494,100){\line(1,0){163.570}}
+\put(236.494,97){\line(0,1){6}}
+\put(400.064,97){\line(0,1){6}}
+\put(318.923,100){\circle*{4}}
+\put(102,77){\makebox(0,0)[r]{\small H: overall slope}}
+\put(150.905,77){\line(1,0){80.041}}
+\put(150.905,74){\line(0,1){6}}
+\put(230.946,74){\line(0,1){6}}
+\put(191.350,77){\circle*{4}}
+\put(102,54){\makebox(0,0)[r]{\small C: overall slope}}
+\put(153.095,54){\line(1,0){77.159}}
+\put(153.095,51){\line(0,1){6}}
+\put(230.255,51){\line(0,1){6}}
+\put(192.106,54){\circle*{4}}
+\end{picture}\caption{Posterior means and 95\% credible intervals for standardized overall slopes. These remain subject to the run's stated verification status.}\end{figure}
+
+Pr(negative) is estimated from retained posterior draws, not a frequentist p-value. Values rounded to 1.000 do not imply literal certainty. For positive scale parameters it is not an inferential test. The random-effect correlation refers to the original week-zero intercept and can depend on that time origin.
+
+\clearpage\subsection{Exploratory covariate associations}
+\begingroup\small\setlength{\tabcolsep}{4pt}\begin{longtable}{>{\raggedright\arraybackslash}p{0.32\textwidth}lrr}\caption{Adjusted C contrasts. Age contrasts are per decade; level contrasts apply at original week zero.}\\\toprule
+Contrast & Quantity & Mean & 95\% credible interval \\
+\midrule\endfirsthead\toprule
+Contrast & Quantity & Mean & 95\% credible interval \\
+\midrule\endhead\bottomrule\endfoot
+Age, per decade & Level (mL) & -159.36 & [-307.40, -10.92] \\
+Male vs female & Level (mL) & 991.81 & [710.72, 1279.01] \\
+Current vs former smoker & Level (mL) & 279.30 & [-203.83, 751.22] \\
+Never vs former smoker & Level (mL) & -66.46 & [-325.03, 193.51] \\
+Age, per decade & Slope (mL/week) & 0.90 & [-0.27, 2.07] \\
+Male vs female & Slope (mL/week) & -1.23 & [-3.39, 0.93] \\
+Current vs former smoker & Slope (mL/week) & 6.97 & [3.39, 10.57] \\
+Never vs former smoker & Slope (mL/week) & -0.25 & [-2.25, 1.75] \\
+\end{longtable}\endgroup
+\begingroup\small\setlength{\tabcolsep}{4pt}\begin{longtable}{>{\raggedright\arraybackslash}p{0.48\textwidth}rr}\caption{Selected C profile slopes (mL/week), separate from the cohort-standardized slope.}\\\toprule
+Profile & Mean & 95\% credible interval \\
+\midrule\endfirsthead\toprule
+Profile & Mean & 95\% credible interval \\
+\midrule\endhead\bottomrule\endfoot
+Female, former smoker, age 65 & -3.75 & [-5.95, -1.58] \\
+Male, former smoker, age 65 & -4.98 & [-6.06, -3.89] \\
+Female, never smoker, age 65 & -4.00 & [-5.97, -2.01] \\
+Female, current smoker, age 65 & 3.22 & [-0.60, 7.05] \\
+Female, former smoker, age 75 & -2.85 & [-5.25, -0.48] \\
+\end{longtable}\endgroup
+These contrasts hold other modeled covariates fixed. They describe associations, not causal effects. Small subgroups warrant particular caution even when Monte Carlo error is small.
+
+\subsection{Sensitivity analyses}
+\begingroup\small\setlength{\tabcolsep}{4pt}\begin{longtable}{llrr}\caption{Overall slopes under prior-scale and duplicate-handling variants (mL/week).}\\\toprule
+Model & Variant & Mean & 95\% credible interval \\
+\midrule\endfirsthead\toprule
+Model & Variant & Mean & 95\% credible interval \\
+\midrule\endhead\bottomrule\endfoot
+H & primary & -4.25 & [-5.12, -3.40] \\
+C & primary & -4.23 & [-5.07, -3.41] \\
+H & prior-half & -4.21 & [-5.06, -3.36] \\
+C & prior-half & -4.22 & [-5.05, -3.41] \\
+H & prior-double & -4.25 & [-5.12, -3.39] \\
+C & prior-double & -4.24 & [-5.06, -3.41] \\
+H & all-rows & -4.26 & [-5.13, -3.39] \\
+C & all-rows & -4.24 & [-5.06, -3.40] \\
+\end{longtable}\endgroup
+\begin{figure}[htbp]\centering\setlength{\unitlength}{1pt}
+\begin{picture}(455,229)
+\put(110,32){\line(1,0){325}}
+\multiput(388.571,32)(0,6){31}{\line(0,1){2}}
+\put(110.000,30){\line(0,1){4}}
+\put(110.000,20){\makebox(0,0){\scriptsize $-6.0$}}
+\put(156.429,30){\line(0,1){4}}
+\put(156.429,20){\makebox(0,0){\scriptsize $-5.0$}}
+\put(202.857,30){\line(0,1){4}}
+\put(202.857,20){\makebox(0,0){\scriptsize $-4.0$}}
+\put(249.286,30){\line(0,1){4}}
+\put(249.286,20){\makebox(0,0){\scriptsize $-3.0$}}
+\put(295.714,30){\line(0,1){4}}
+\put(295.714,20){\makebox(0,0){\scriptsize $-2.0$}}
+\put(342.143,30){\line(0,1){4}}
+\put(342.143,20){\makebox(0,0){\scriptsize $-1.0$}}
+\put(388.571,30){\line(0,1){4}}
+\put(388.571,20){\makebox(0,0){\scriptsize $0.0$}}
+\put(435.000,30){\line(0,1){4}}
+\put(435.000,20){\makebox(0,0){\scriptsize $1.0$}}
+\put(272.5,5){\makebox(0,0){\small Slope (mL/week)}}
+\put(102,215){\makebox(0,0)[r]{\small H: primary}}
+\put(150.905,215){\line(1,0){80.041}}
+\put(150.905,212){\line(0,1){6}}
+\put(230.946,212){\line(0,1){6}}
+\put(191.350,215){\circle*{4}}
+\put(102,192){\makebox(0,0)[r]{\small C: primary}}
+\put(153.095,192){\line(1,0){77.159}}
+\put(153.095,189){\line(0,1){6}}
+\put(230.255,189){\line(0,1){6}}
+\put(192.106,192){\circle*{4}}
+\put(102,169){\makebox(0,0)[r]{\small H: prior-half}}
+\put(153.857,169){\line(1,0){78.495}}
+\put(153.857,166){\line(0,1){6}}
+\put(232.352,166){\line(0,1){6}}
+\put(192.991,169){\circle*{4}}
+\put(102,146){\makebox(0,0)[r]{\small C: prior-half}}
+\put(154.164,146){\line(1,0){76.130}}
+\put(154.164,143){\line(0,1){6}}
+\put(230.294,143){\line(0,1){6}}
+\put(192.668,146){\circle*{4}}
+\put(102,123){\makebox(0,0)[r]{\small H: prior-double}}
+\put(150.642,123){\line(1,0){80.381}}
+\put(150.642,120){\line(0,1){6}}
+\put(231.023,120){\line(0,1){6}}
+\put(191.094,123){\circle*{4}}
+\put(102,100){\makebox(0,0)[r]{\small C: prior-double}}
+\put(153.677,100){\line(1,0){76.741}}
+\put(153.677,97){\line(0,1){6}}
+\put(230.418,97){\line(0,1){6}}
+\put(191.728,100){\circle*{4}}
+\put(102,77){\makebox(0,0)[r]{\small H: all-rows}}
+\put(150.559,77){\line(1,0){80.433}}
+\put(150.559,74){\line(0,1){6}}
+\put(230.992,74){\line(0,1){6}}
+\put(190.951,77){\circle*{4}}
+\put(102,54){\makebox(0,0)[r]{\small C: all-rows}}
+\put(153.440,54){\line(1,0){77.392}}
+\put(153.440,51){\line(0,1){6}}
+\put(230.832,51){\line(0,1){6}}
+\put(191.899,54){\circle*{4}}
+\end{picture}\caption{Sensitivity of H and C overall slopes: posterior means and 95\% credible intervals.}\end{figure}
+
+Prior-half and prior-double change only the prespecified prior scales; all-rows retains every original measurement. Agreement across these variants does not establish robustness to other assumptions.
+
+\section{Validation}\subsection{Sampling diagnostics}
+Computational gates require rank-normalized R-hat below 1.01, bulk/tail ESS at least 400, no post-warmup divergences, and each chain's E-BFMI at least 0.3 for monitored parameters and major derived estimands. These follow \href{https://mc-stan.org/learn-stan/diagnostics-warnings.html}{Stan's diagnostic guidance} and rank-based convergence diagnostics~\cite{rhat}. This project additionally requires zero tree-depth hits. Slope MCSE is reported in mL/week. Passing these checks does not establish model adequacy.
+
+\begingroup\small\setlength{\tabcolsep}{4pt}\begin{longtable}{lrrrrrrrr}\caption{Diagnostic extrema for each accepted or most recently attempted fit.}\\\toprule
+Fit & R-hat & Bulk & Tail & Div. & Depth & BFMI & MCSE & Pass \\
+\midrule\endfirsthead\toprule
+Fit & R-hat & Bulk & Tail & Div. & Depth & BFMI & MCSE & Pass \\
+\midrule\endhead\bottomrule\endfoot
+P primary & 1.0014 & 4587 & 5910 & 0 & 0 & 1.02 & 0.012 & yes \\
+H primary & 1.0096 & 491 & 900 & 0 & 0 & 0.59 & 0.006 & yes \\
+C primary & 1.0021 & 2318 & 4487 & 0 & 0 & 0.60 & 0.004 & yes \\
+P CV1 & 1.0011 & 4770 & 5870 & 0 & 0 & 0.98 & 0.014 & yes \\
+H CV1 & 1.0031 & 643 & 1230 & 0 & 0 & 0.62 & 0.008 & yes \\
+C CV1 & 1.0076 & 926 & 1789 & 0 & 0 & 0.60 & 0.007 & yes \\
+P CV2 & 1.0009 & 5056 & 5768 & 0 & 0 & 1.03 & 0.014 & yes \\
+H CV2 & 1.0013 & 2337 & 4740 & 0 & 0 & 0.59 & 0.003 & yes \\
+C CV2 & 1.0070 & 735 & 1444 & 0 & 0 & 0.59 & 0.007 & yes \\
+P CV3 & 1.0005 & 5101 & 6282 & 0 & 0 & 1.03 & 0.014 & yes \\
+H CV3 & 1.0065 & 1124 & 2324 & 0 & 0 & 0.59 & 0.005 & yes \\
+C CV3 & 1.0028 & 1267 & 2407 & 0 & 0 & 0.62 & 0.006 & yes \\
+P CV4 & 1.0003 & 4717 & 5478 & 0 & 0 & 0.98 & 0.015 & yes \\
+H CV4 & 1.0048 & 594 & 1294 & 0 & 0 & 0.57 & 0.005 & yes \\
+C CV4 & 1.0040 & 1069 & 1839 & 0 & 0 & 0.58 & 0.005 & yes \\
+P CV5 & 1.0008 & 4763 & 5478 & 0 & 0 & 0.95 & 0.014 & yes \\
+H CV5 & 1.0040 & 755 & 1519 & 0 & 0 & 0.61 & 0.007 & yes \\
+C CV5 & 1.0055 & 709 & 1067 & 0 & 0 & 0.61 & 0.008 & yes \\
+H prior-half & 1.0051 & 481 & 1109 & 0 & 0 & 0.55 & 0.006 & yes \\
+C prior-half & 1.0083 & 750 & 1555 & 0 & 0 & 0.59 & 0.006 & yes \\
+H prior-double & 1.0059 & 583 & 1233 & 0 & 0 & 0.59 & 0.006 & yes \\
+C prior-double & 1.0035 & 1663 & 3364 & 0 & 0 & 0.59 & 0.004 & yes \\
+H all-rows & 1.0040 & 1176 & 2372 & 0 & 0 & 0.60 & 0.003 & yes \\
+C all-rows & 1.0079 & 707 & 1778 & 0 & 0 & 0.57 & 0.006 & yes \\
+\end{longtable}\endgroup
+\subsection{Patient-level predictive performance}
+\begingroup\small\setlength{\tabcolsep}{4pt}\begin{longtable}{lrrrrr}\caption{Patient-equal validation: mL-scale joint log density; errors and width in mL; coverage as a proportion.}\\\toprule
+Model & Mean log score & RMSE & MAE & Coverage & Width \\
+\midrule\endfirsthead\toprule
+Model & Mean log score & RMSE & MAE & Coverage & Width \\
+\midrule\endhead\bottomrule\endfoot
+C & -58.999 & 719.3 & 556.3 & 0.952 & 2912.7 \\
+H & -59.187 & 835.3 & 657.5 & 0.950 & 3341.9 \\
+P & -71.392 & 835.0 & 659.6 & 0.953 & 3251.8 \\
+\end{longtable}\endgroup
+\begingroup\small\setlength{\tabcolsep}{4pt}\begin{longtable}{lrr}\caption{Joint-log-score contrasts, model A minus B. Positive values favor A on this internal criterion.}\\\toprule
+Comparison & Mean paired difference & Approximate SE \\
+\midrule\endfirsthead\toprule
+Comparison & Mean paired difference & Approximate SE \\
+\midrule\endhead\bottomrule\endfoot
+H minus P & 12.206 & 0.642 \\
+C minus P & 12.393 & 0.642 \\
+C minus H & 0.187 & 0.043 \\
+\end{longtable}\endgroup
+Joint scores depend on visit number and timing; models share the same held-out records. Coverage must be interpreted with interval width. Neither a favorable score nor nominal empirical coverage establishes transportability.
+
+\subsection{Prior and posterior predictive checks}
+\begingroup\small\setlength{\tabcolsep}{4pt}\begin{longtable}{l>{\raggedright\arraybackslash}p{0.32\textwidth}rrr}\caption{Prior checks: central 95\% simulated statistic intervals and upper-tail fractions.}\\\toprule
+Model & Statistic & Observed & 95\% replicated & Tail fraction \\
+\midrule\endfirsthead\toprule
+Model & Statistic & Observed & 95\% replicated & Tail fraction \\
+\midrule\endhead\bottomrule\endfoot
+P & Negative FVC fraction & 0.000 & [0.000, 0.324] & 1.000 \\
+P & FVC median (mL) & 2642.0 & [149.6, 5917.7] & 0.609 \\
+P & FVC 1st percentile (mL) & 1073.2 & [-1214.3, 5199.6] & 0.710 \\
+P & FVC 99th percentile (mL) & 4791.0 & [1015.6, 7053.3] & 0.338 \\
+H & Negative FVC fraction & 0.000 & [0.000, 0.445] & 1.000 \\
+H & FVC median (mL) & 2642.0 & [139.8, 5913.3] & 0.607 \\
+H & FVC 1st percentile (mL) & 1073.2 & [-3675.8, 3980.9] & 0.381 \\
+H & FVC 99th percentile (mL) & 4791.0 & [2103.1, 9675.5] & 0.649 \\
+C & Negative FVC fraction & 0.000 & [0.000, 0.679] & 1.000 \\
+C & FVC median (mL) & 2642.0 & [-529.1, 6531.8] & 0.585 \\
+C & FVC 1st percentile (mL) & 1073.2 & [-4507.9, 3795.7] & 0.290 \\
+C & FVC 99th percentile (mL) & 4791.0 & [2130.2, 10182.4] & 0.759 \\
+\end{longtable}\endgroup
+\begingroup\small\setlength{\tabcolsep}{4pt}\begin{longtable}{l>{\raggedright\arraybackslash}p{0.32\textwidth}rrr}\caption{Conditional posterior checks. Slopes in this table use mL/year, not mL/week.}\\\toprule
+Model & Statistic & Observed & 95\% replicated & Tail fraction \\
+\midrule\endfirsthead\toprule
+Model & Statistic & Observed & 95\% replicated & Tail fraction \\
+\midrule\endhead\bottomrule\endfoot
+P & FVC median (mL) & 2642.0 & [2624.5, 2754.9] & 0.936 \\
+P & FVC 5th percentile (mL) & 1441.0 & [1215.6, 1420.1] & 0.007 \\
+P & FVC 95th percentile (mL) & 4184.2 & [3955.7, 4170.5] & 0.016 \\
+P & FVC SD (mL) & 833.9 & [791.8, 877.4] & 0.513 \\
+P & SD of patient means (mL) & 814.4 & [252.3, 316.8] & 0.000 \\
+P & Mean patient slope (mL/year) & -234.7 & [-244.7, 91.3] & 0.969 \\
+P & SD of patient slopes (mL/year) & 318.5 & [823.9, 1076.2] & 1.000 \\
+P & Adjacent residual correlation & 0.975 & [-0.054, 0.052] & 0.000 \\
+P & Residual time slope (mL/year) & 0.4 & [-90.4, 92.3] & 0.489 \\
+P & Absolute-residual time slope (mL/year) & 2.2 & [-55.2, 56.1] & 0.449 \\
+H & FVC median (mL) & 2642.0 & [2615.3, 2664.0] & 0.454 \\
+H & FVC 5th percentile (mL) & 1441.0 & [1408.3, 1479.2] & 0.556 \\
+H & FVC 95th percentile (mL) & 4184.2 & [4128.6, 4223.1] & 0.322 \\
+H & FVC SD (mL) & 833.9 & [824.6, 843.7] & 0.496 \\
+H & SD of patient means (mL) & 814.4 & [805.2, 824.3] & 0.496 \\
+H & Mean patient slope (mL/year) & -234.7 & [-252.8, -189.7] & 0.806 \\
+H & SD of patient slopes (mL/year) & 318.5 & [273.8, 334.9] & 0.192 \\
+H & Adjacent residual correlation & 0.107 & [-0.055, 0.050] & 0.000 \\
+H & Residual time slope (mL/year) & -0.3 & [-15.7, 15.1] & 0.529 \\
+H & Absolute-residual time slope (mL/year) & 6.2 & [-8.8, 9.8] & 0.136 \\
+C & FVC median (mL) & 2642.0 & [2617.3, 2666.9] & 0.472 \\
+C & FVC 5th percentile (mL) & 1441.0 & [1405.9, 1480.5] & 0.545 \\
+C & FVC 95th percentile (mL) & 4184.2 & [4125.3, 4222.3] & 0.301 \\
+C & FVC SD (mL) & 833.9 & [824.2, 843.2] & 0.516 \\
+C & SD of patient means (mL) & 814.4 & [804.3, 823.5] & 0.512 \\
+C & Mean patient slope (mL/year) & -234.7 & [-250.6, -187.9] & 0.824 \\
+C & SD of patient slopes (mL/year) & 318.5 & [275.2, 336.8] & 0.218 \\
+C & Adjacent residual correlation & 0.110 & [-0.054, 0.052] & 0.000 \\
+C & Residual time slope (mL/year) & -0.6 & [-15.0, 15.1] & 0.518 \\
+C & Absolute-residual time slope (mL/year) & 6.1 & [-9.4, 9.6] & 0.150 \\
+\end{longtable}\endgroup
+Posterior checks condition on observed patients and their posterior random effects. Patient OLS slopes require at least two distinct times. Adjacent residual pairs are pooled within patients after ordering by time; equal spacing is not assumed. Signed and absolute residual time slopes address different discrepancies. Distributional observed statistics are fixed; observed residual entries are medians of draw-specific discrepancies. Tail fractions compare replicated and observed discrepancies within the same posterior draw before averaging. Values below 0.025 or above 0.975 flag discrepancies, not calibrated hypothesis-test significance.
+
+\section{Discussion}
+The main estimates have passed the recorded computational gates. Substantive interpretation remains conditional on the likelihood, priors, observation process, and predictive-check findings.
+
+The pooled benchmark's 95\% slope interval includes zero. P combines within- and between-patient information without patient effects, whereas H is the prespecified primary model for longitudinal change. The decline conclusion therefore should not be described as independently established by all three models.
+
+For model H, median observed adjacent-visit residual correlation is 0.107, versus replicated 95\% interval [-0.055, 0.050] (simulated upper-tail fraction 0.000). This flags remaining serial dependence.
+
+For model C, median observed adjacent-visit residual correlation is 0.110, versus replicated 95\% interval [-0.054, 0.052] (simulated upper-tail fraction 0.000). This flags remaining serial dependence.
+
+Remaining serial dependence makes conditional residual independence questionable. Population credible intervals and new-patient predictive intervals retain that assumption; their calibration and predictive adequacy may be affected. Passing MCMC diagnostics does not resolve this limitation. The prespecified models are retained so the discrepancy remains visible.
+
+The paired mean joint-log-score difference C minus H is 0.187 (approximate SE 0.043). This is an internal comparison with a descriptive patient-level uncertainty approximation, not evidence of general model superiority.
+
+Model H has patient-equal empirical coverage 95.0\% for nominal 95\% intervals, with mean width 3341.9 mL. Coverage and width must be considered together.
+
+Model C has patient-equal empirical coverage 95.2\% for nominal 95\% intervals, with mean width 2912.7 mL. Coverage and width must be considered together.
+
+Across H's main, half-scale, and double-scale priors, posterior mean slopes range from -4.25 to -4.21 mL/week. The largest absolute change from the main estimate is 0.04 mL/week. This addresses those specific scale choices, not other prior families or residual dependence.
+
+Linear trajectories, Gaussian constant-variance errors, informative visit timing or dropout, cohort selection, and unmeasured factors limit inference. Averaging same-week outcomes changes their weighting and noise structure. Covariate adjustment does not make associations causal. Small subgroups can remain prior sensitive. Population-mean credible intervals and individual predictive intervals answer different questions.
+
+Internal prediction at known covariates and visit times does not establish external validity, future-visit performance for a known patient, treatment benefit, or clinical utility. Independent data with documented provenance and models addressing informative observation processes would be needed for those questions.
+
+\clearpage\section{Reproducibility}
+\begingroup\small\setlength{\tabcolsep}{4pt}\begin{longtable}{ll}\caption{Run provenance without participant-level records or local paths.}\\\toprule
+Field & Recorded value \\
+\midrule\endfirsthead\toprule
+Field & Recorded value \\
+\midrule\endhead\bottomrule\endfoot
+run id & research \\
+mode & research \\
+created utc & 2026-09-28 00:05:54 UTC \\
+status & verified \\
+seed & 4224 \\
+run count & 24 \\
+\end{longtable}\endgroup
+Input SHA-256: \nolinkurl{45aa8d255d4c26476d6ba1bd4ba38823752420a716b75cf3ec24f2fab93f7270}.
+
+\begingroup\small\setlength{\tabcolsep}{4pt}\begin{longtable}{ll}\caption{Software recorded by the run.}\\\toprule
+Component & Version \\
+\midrule\endfirsthead\toprule
+Component & Version \\
+\midrule\endhead\bottomrule\endfoot
+rstan & 2.32.7 \\
+StanHeaders & 2.32.10 \\
+posterior & 1.7.0 \\
+digest & 0.6.39 \\
+rmarkdown & 2.30 \\
+knitr & 1.51 \\
+jsonlite & 2.0.0 \\
+R & 4.5.3 \\
+\end{longtable}\endgroup
+\begingroup\small\setlength{\tabcolsep}{4pt}\begin{longtable}{lrrrrrrr}\caption{Actual fit settings and elapsed times. Attempts include retained initial failures.}\\\toprule
+Fit & Chains & Iter. & Warmup & Delta & Depth & Seconds & Attempts \\
+\midrule\endfirsthead\toprule
+Fit & Chains & Iter. & Warmup & Delta & Depth & Seconds & Attempts \\
+\midrule\endhead\bottomrule\endfoot
+P primary & 4 & 6000 & 3000 & 0.95 & 12 & 1.3 & 1 \\
+H primary & 4 & 6000 & 3000 & 0.95 & 12 & 51.0 & 1 \\
+C primary & 4 & 10000 & 5000 & 0.99 & 12 & 603.8 & 2 \\
+P CV1 & 4 & 6000 & 3000 & 0.95 & 12 & 0.9 & 1 \\
+H CV1 & 4 & 6000 & 3000 & 0.95 & 12 & 45.8 & 1 \\
+C CV1 & 4 & 6000 & 3000 & 0.95 & 12 & 126.4 & 1 \\
+P CV2 & 4 & 6000 & 3000 & 0.95 & 12 & 1.2 & 1 \\
+H CV2 & 4 & 20000 & 5000 & 0.99 & 12 & 292.3 & 3 \\
+C CV2 & 4 & 6000 & 3000 & 0.95 & 12 & 107.0 & 1 \\
+P CV3 & 4 & 6000 & 3000 & 0.95 & 12 & 1.1 & 1 \\
+H CV3 & 4 & 10000 & 5000 & 0.99 & 12 & 153.1 & 2 \\
+C CV3 & 4 & 6000 & 3000 & 0.95 & 12 & 157.2 & 1 \\
+P CV4 & 4 & 6000 & 3000 & 0.95 & 12 & 0.9 & 1 \\
+H CV4 & 4 & 6000 & 3000 & 0.95 & 12 & 45.1 & 1 \\
+C CV4 & 4 & 6000 & 3000 & 0.95 & 12 & 130.9 & 1 \\
+P CV5 & 4 & 6000 & 3000 & 0.95 & 12 & 1.0 & 1 \\
+H CV5 & 4 & 10000 & 5000 & 0.99 & 12 & 189.6 & 2 \\
+C CV5 & 4 & 6000 & 3000 & 0.95 & 12 & 133.3 & 1 \\
+H prior-half & 4 & 6000 & 3000 & 0.95 & 12 & 75.4 & 1 \\
+C prior-half & 4 & 6000 & 3000 & 0.95 & 12 & 131.2 & 1 \\
+H prior-double & 4 & 10000 & 5000 & 0.99 & 12 & 197.3 & 2 \\
+C prior-double & 4 & 10000 & 5000 & 0.99 & 14 & 511.5 & 3 \\
+H all-rows & 4 & 20000 & 5000 & 0.99 & 12 & 306.9 & 3 \\
+C all-rows & 4 & 6000 & 3000 & 0.95 & 12 & 186.1 & 1 \\
+\end{longtable}\endgroup
+The report reads only the selected run's public summaries and manifest. Cache identity includes data, preprocessing, model, priors, seeds, sampling settings, and software. Stale or incompatible caches cannot silently supply results. Real data, fitted objects, and patient-level validation records remain private.
+
+\begin{verbatim}
+Rscript scripts/setup.R
+Rscript tests/run_tests.R
+Rscript scripts/run.R --mode demo --smoke
+Rscript scripts/render.R --run demo
+
+Rscript scripts/run.R --mode research --data <authorized.csv>
+Rscript scripts/render.R --run <run-id>
+\end{verbatim}
+Code and original documentation: \href{https://github.com/junguangjia/bayesian-fvc-trajectories}{github.com/junguangjia/bayesian-fvc-trajectories}, under the MIT License. That license does not grant third-party data rights. Cite the data provider separately.
+
+\begin{thebibliography}{9}\raggedright\bibitem{osic} Open Source Imaging Consortium. OSIC Pulmonary Fibrosis Progression: Dataset Description. Kaggle, 2020. \url{https://www.kaggle.com/competitions/osic-pulmonary-fibrosis-progression/data}.\bibitem{rhat} A. Vehtari, A. Gelman, D. Simpson, B. Carpenter, and P.-C. Buerkner. Rank-normalization, folding, and localization: An improved $\widehat R$ for assessing convergence of MCMC. Bayesian Analysis, 2021. \url{https://arxiv.org/abs/1903.08008}.\bibitem{loo} Stan Development Team. Frequently asked questions about cross-validation. \url{https://mc-stan.org/loo/articles/online-only/faq.html}.\bibitem{stan} Stan Development Team. Stan User's Guide: Regression models. \url{https://mc-stan.org/docs/stan-users-guide/regression.html}.\end{thebibliography}\end{document}

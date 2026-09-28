@@ -1,0 +1,10 @@
+Package: bayesianfvc
+Title: Bayesian Modeling of Pulmonary Fibrosis Trajectories
+Version: 0.1.0
+Authors@R: person("Junguang", "Jia", role = c("aut", "cre"))
+Description: Reproducible Bayesian longitudinal analysis and grouped predictive
+    validation of forced vital capacity, with a synthetic demonstration workflow.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Depends: R (>= 4.5.0)
+Imports: rstan, StanHeaders, posterior, digest, jsonlite, rmarkdown, knitr

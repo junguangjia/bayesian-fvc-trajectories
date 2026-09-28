@@ -1,0 +1,78 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,booktabs,longtable,array}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Computational Validation of Bayesian FVC Trajectory Models},pdfauthor={Junguang Jia}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.3em}
+\setlength{\emergencystretch}{2em}
+\title{Computational Validation of Bayesian FVC Trajectory Models}
+\author{Junguang Jia}
+\date{}
+\begin{document}
+\maketitle
+\section{Scope and disposition}
+This report evaluates implementation checks, sampling diagnostics, and a single synthetic parameter-recovery experiment. It reads the recorded research and recovery outputs and an explicit QA receipt. The common base seed is 4224. It does not certify external predictive validity, clinical utility, causal interpretation, or general parameter-recovery calibration.
+
+\textbf{Disposition: computational verification complete.} Residual checks additionally identify a substantive serial-dependence limitation, independently of computational acceptance.
+
+\section{Research configuration and sampling checks}
+The prespecified research analysis has 24 configurations: three main fits, 15 patient-fold fits, four prior-scale variants, and two duplicate-handling variants. There are 24 recorded diagnostic rows and 34 recorded sampling attempts (10 retries). Attempts are counted separately from configurations; an initial failed attempt is retained in the metadata.
+
+\begingroup\small\setlength{\tabcolsep}{5pt}\begin{longtable}{lrrrrrrr}\toprule
+Analysis & Fits & Max R-hat & Min bulk & Min tail & Div. & Depth & Min BFMI \\
+\midrule\endfirsthead\toprule
+Analysis & Fits & Max R-hat & Min bulk & Min tail & Div. & Depth & Min BFMI \\
+\midrule\endhead\bottomrule\endfoot
+Research & 24 & 1.0096 & 481 & 900 & 0 & 0 & 0.551 \\
+Recovery & 3 & 1.0044 & 922 & 1662 & 0 & 0 & 0.597 \\
+\end{longtable}\endgroup
+Gates are rank-normalized R-hat $<1.01$, bulk and tail ESS $\geq400$, no post-warmup divergences, no tree-depth hits, and per-chain E-BFMI $\geq0.3$. Research slope MCSE has recorded maximum 0.0154 mL/week. The report recomputes gates from the extrema rather than relying only on the saved pass flag. These numerical gates do not establish that the Gaussian residual model is adequate.
+
+\section{Synthetic parameter recovery}
+\begingroup\small\setlength{\tabcolsep}{5pt}\begin{longtable}{lrrrr}\toprule
+Estimand & Truth & Estimate & Absolute error & Tolerance \\
+\midrule\endfirsthead\toprule
+Estimand & Truth & Estimate & Absolute error & Tolerance \\
+\midrule\endhead\bottomrule\endfoot
+C overall slope & -4.9760 & -5.2504 & 0.2744 & 1.5000 \\
+\end{longtable}\endgroup
+All quantities in this table are in mL/week. The acceptance rule is absolute error strictly below the recorded tolerance. The calculation is independently checked against the saved truth and estimate. This is one seeded synthetic dataset and one targeted slope-recovery check; it is not simulation-based calibration or a repeated-simulation coverage study.
+
+\section{Model-adequacy limitation}
+\begingroup\small\setlength{\tabcolsep}{5pt}\begin{longtable}{lrrrl}\toprule
+Model & Observed & Replicated 95\% interval & Tail fraction & Flag \\
+\midrule\endfirsthead\toprule
+Model & Observed & Replicated 95\% interval & Tail fraction & Flag \\
+\midrule\endhead\bottomrule\endfoot
+H & 0.107 & [-0.055, 0.050] & 0.000 & yes \\
+C & 0.110 & [-0.054, 0.052] & 0.000 & yes \\
+\end{longtable}\endgroup
+The statistic is pooled adjacent-visit residual correlation within patients ordered by time. Observed entries are medians of draw-specific discrepancies; tail fractions compare replicated and observed discrepancies within each posterior draw. Fractions below 0.025 or above 0.975 flag lack of agreement, not calibrated hypothesis-test significance. The flagged discrepancy indicates remaining serial dependence. Nominal population credible intervals and new-patient predictive intervals retain a questionable residual-independence assumption, so calibration and predictive adequacy may be affected.
+
+\section{Evidence receipt and reproducibility}
+\begingroup\small\setlength{\tabcolsep}{5pt}\begin{longtable}{>{\raggedright\arraybackslash}p{0.76\textwidth}l}\toprule
+Required evidence & Result \\
+\midrule\endfirsthead\toprule
+Required evidence & Result \\
+\midrule\endhead\bottomrule\endfoot
+Verified research manifest and seed & passed \\
+All 24 research configurations and diagnostic gates & passed \\
+Attempt counts agree with the manifest & passed \\
+Research artifact hashes match & passed \\
+Synthetic recovery manifest and seed & passed \\
+All three recovery models meet diagnostic gates & passed \\
+Recovery error is below its recorded tolerance & passed \\
+Recovery artifact hashes match & passed \\
+QA receipt matches both analysis hashes & passed \\
+Unit and numerical tests & passed \\
+Compiled synthetic smoke workflow & passed \\
+Clean-directory synthetic reproduction & passed \\
+\end{longtable}\endgroup
+Software checks are asserted only when the supplied receipt contains literal true values and its analysis hashes match both run manifests. Missing, false, malformed, or mismatched evidence cannot establish a pass. Research diagnostic, fit-metadata, and posterior-check hashes and recovery diagnostic and recovery-summary hashes are compared with the recorded artifact hashes. The receipt's local path and host details are not published.
+
+The receipt covers unit and numerical checks, a compiled synthetic smoke workflow, and reproduction from a clean directory. These checks complement the full research fits; a smoke run alone does not establish convergence. This report makes no hosted-CI, deployment, publication, independent-data, or clinical-validation claim.
+
+\end{document}

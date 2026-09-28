@@ -1,0 +1,54 @@
+{
+  "mode": "research",
+  "run_id": "research",
+  "created_utc": "2026-09-28 00:05:54 UTC",
+  "seed": 4224,
+  "status": "verified",
+  "run_count": 24,
+  "planned_run_count": 24,
+  "data_sha256": "45aa8d255d4c26476d6ba1bd4ba38823752420a716b75cf3ec24f2fab93f7270",
+  "software": {
+    "rstan": "2.32.7",
+    "StanHeaders": "2.32.10",
+    "posterior": "1.7.0",
+    "digest": "0.6.39",
+    "rmarkdown": "2.30",
+    "knitr": "1.51",
+    "jsonlite": "2.0.0",
+    "R": "4.5.3"
+  },
+  "settings": {
+    "chains": 4,
+    "iter": 6000,
+    "warmup": 3000,
+    "adapt_delta": 0.95,
+    "max_treedepth": 12,
+    "cores": 4
+  },
+  "prediction_draw_limit": 1000,
+  "source_sha256": {
+    "R/data.R": "9c5e459e494dba36d0f22467932f6f1908ee60c713e7e3eb2c16b1d880431536",
+    "R/evaluate.R": "53c685fdbd3e55ffa4a9161f8e4cdf84165c4e4bc6e415868cec14018ef303a8",
+    "R/model.R": "5364fe1d9b4c9d26bba59943eb0e0a2d455ba810f25b012610a1d8d86d3e341e",
+    "R/summaries.R": "722c860de10970bfd05c017c90069f2d82afa5c01434dd4956983e0f25b6b974",
+    "stan/hierarchical.stan": "a925d292252abdfd26d6d3f03a34dbdaea852ef9fbb67bbe9f7f254e388921aa",
+    "stan/pooled.stan": "6596d1df776f4cbc0462d1bcf78df976ffa8725b6b5597fdf5c6816871e46d03",
+    "scripts/run.R": "dfc3aa846860e4aeb8c833e8876a33bf5e7e706212defb5326a148590fdd8496",
+    "scripts/common.R": "3b8a99568c4f8a0affa5a44ca081713c905995ab16f14a459790a023a2b7a89d",
+    "renv.lock": "08e79602123c0dd99e0ead3809d03f0f8c6ce88097e75c328c971573c68a2e08"
+  },
+  "analysis_sha256": "409c688c8f5e64a2ef2ba7359b14a30e7a75654bede6f8d0358eb5e1371ac357",
+  "completed_utc": "2026-09-28 00:22:02 UTC",
+  "sampling_attempts": 34,
+  "output_sha256": {
+    "checks.csv": "8595be2190ed16d50f8566ab5a0ae62023807d4bcf7a1c1e3c0152cc2394c5fc",
+    "cohort.csv": "2386385c418ff0526c3d971cdcc2265cfe0086c4630dc9afcd3150e9353e6106",
+    "curves.csv": "e99f45aa43a03634bc1ee910635c92608aec9068ffe18ba255a56751c541b6af",
+    "cv_comparisons.csv": "fd5f30856bfc0b87ef26ce0330a7deceda363ba6d395637529e00ffca7e203b4",
+    "cv_metrics.csv": "56ce2cc19c25f0eef9b87888c760b59e73d7cbbed5a788829d490a6d4d679fe1",
+    "diagnostics.csv": "e4c16cc41c682fe4f3eaa457eef0026fa3c17a82985ccbfbe653792080d17308",
+    "estimates.csv": "7620f9b9bc40852f0cd3a7bc75611955bc933ac37ec3b561acab5efc5976b143",
+    "prior_checks.csv": "1524ea98c5ff404d937e317df72917c979d6acfe4ff625b05e9f0fc6e4ee25b7",
+    "fit_metadata.json": "75eff911e5534fd2afbf9f027dc91411fcff6d89b1dc11deeb5d6712c9c8a98c"
+  }
+}

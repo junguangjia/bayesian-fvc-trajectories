@@ -1,0 +1,14 @@
+"metric","value"
+"raw_rows",1549
+"patients",176
+"patient_weeks",1542
+"analyzed_rows",1542
+"repeated_week_extra_rows",7
+"current_smokers",9
+"female_current_smokers",2
+"male_patients",139
+"female_patients",37
+"ex_smokers",118
+"never_smokers",49
+"min_week",-5
+"max_week",133

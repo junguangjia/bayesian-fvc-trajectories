@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using this metadata and cite the data provider separately."
+title: "Bayesian Modeling of Pulmonary Fibrosis Trajectories"
+type: software
+authors:
+  - family-names: Jia
+    given-names: Junguang
+repository-code: "https://github.com/junguangjia/bayesian-fvc-trajectories"
+url: "https://github.com/junguangjia/bayesian-fvc-trajectories"
+license: MIT
+keywords:
+  - Bayesian statistics
+  - longitudinal data
+  - pulmonary fibrosis
+  - hierarchical models
+  - Stan
+  - reproducible research

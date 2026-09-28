@@ -1,0 +1,1448 @@
+{
+  "P_primary": {
+    "label": "P_primary",
+    "model": "P",
+    "variant": "primary",
+    "settings": {
+      "chains": 4,
+      "iter": 6000,
+      "warmup": 3000,
+      "adapt_delta": 0.95,
+      "max_treedepth": 12,
+      "cores": 4
+    },
+    "seed": 4225,
+    "elapsed_seconds": 1.279,
+    "cache_key": "be08c19a5eae486c9cf959fa8097dbe519df8f87524f92cedd142cd14c764d85",
+    "source_sha256": "6596d1df776f4cbc0462d1bcf78df976ffa8725b6b5597fdf5c6816871e46d03",
+    "implementation_sha256": "5364fe1d9b4c9d26bba59943eb0e0a2d455ba810f25b012610a1d8d86d3e341e",
+    "software_sha256": "a78dc01bb959da12362bce27a18351f88ace7f1e94bb21bca10d682bd8615fc1",
+    "settings_sha256": "1d0c528746b268a84a8b5e11a171e2a934f469fbc58d9ab0fb89c5210be2dc73",
+    "attempts": [
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 6000,
+          "warmup": 3000,
+          "adapt_delta": 0.95,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "P_primary",
+            "model": "P",
+            "variant": "primary",
+            "max_rhat": 1.0014,
+            "min_bulk_ess": 4586.9596,
+            "min_tail_ess": 5909.9157,
+            "max_slope_mcse": 0.0125,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 1.0217,
+            "passed": true
+          }
+        ],
+        "elapsed_seconds": 1.279,
+        "cache_key": "be08c19a5eae486c9cf959fa8097dbe519df8f87524f92cedd142cd14c764d85"
+      }
+    ]
+  },
+  "H_primary": {
+    "label": "H_primary",
+    "model": "H",
+    "variant": "primary",
+    "settings": {
+      "chains": 4,
+      "iter": 6000,
+      "warmup": 3000,
+      "adapt_delta": 0.95,
+      "max_treedepth": 12,
+      "cores": 4
+    },
+    "seed": 4226,
+    "elapsed_seconds": 51.033,
+    "cache_key": "2bbfb46d931f5664d782a0bb70b64d0f757cbd002aa4dac0f78909ef13a23e42",
+    "source_sha256": "a925d292252abdfd26d6d3f03a34dbdaea852ef9fbb67bbe9f7f254e388921aa",
+    "implementation_sha256": "5364fe1d9b4c9d26bba59943eb0e0a2d455ba810f25b012610a1d8d86d3e341e",
+    "software_sha256": "a78dc01bb959da12362bce27a18351f88ace7f1e94bb21bca10d682bd8615fc1",
+    "settings_sha256": "1a345e45d2696d228f65834ec9890fa5789ebb7e3a9ca347562db1d290bee557",
+    "attempts": [
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 6000,
+          "warmup": 3000,
+          "adapt_delta": 0.95,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "H_primary",
+            "model": "H",
+            "variant": "primary",
+            "max_rhat": 1.0096,
+            "min_bulk_ess": 490.5188,
+            "min_tail_ess": 899.6933,
+            "max_slope_mcse": 0.0063,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.5864,
+            "passed": true
+          }
+        ],
+        "elapsed_seconds": 51.033,
+        "cache_key": "2bbfb46d931f5664d782a0bb70b64d0f757cbd002aa4dac0f78909ef13a23e42"
+      }
+    ]
+  },
+  "C_primary": {
+    "label": "C_primary",
+    "model": "C",
+    "variant": "primary",
+    "settings": {
+      "chains": 4,
+      "iter": 10000,
+      "warmup": 5000,
+      "adapt_delta": 0.99,
+      "max_treedepth": 12,
+      "cores": 4
+    },
+    "seed": 4227,
+    "elapsed_seconds": 603.763,
+    "cache_key": "21a3628c5294d4507a044675f176d6113bdf4303fb357241adf3eb18cc059533",
+    "source_sha256": "a925d292252abdfd26d6d3f03a34dbdaea852ef9fbb67bbe9f7f254e388921aa",
+    "implementation_sha256": "5364fe1d9b4c9d26bba59943eb0e0a2d455ba810f25b012610a1d8d86d3e341e",
+    "software_sha256": "a78dc01bb959da12362bce27a18351f88ace7f1e94bb21bca10d682bd8615fc1",
+    "settings_sha256": "6eff8c040b0eab7a10fa57b806133ef1ddb9eea80bec41c2fcb21790a666ff65",
+    "attempts": [
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 6000,
+          "warmup": 3000,
+          "adapt_delta": 0.95,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "C_primary",
+            "model": "C",
+            "variant": "primary",
+            "max_rhat": 1.0149,
+            "min_bulk_ess": 592.4599,
+            "min_tail_ess": 1256.3297,
+            "max_slope_mcse": 0.0067,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.6136,
+            "passed": false
+          }
+        ],
+        "elapsed_seconds": 111.046,
+        "cache_key": "c7c4c1030df8e47cf192a71ae5ff194bc569ac38b80007f1fc5f0321f06de5d8"
+      },
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 10000,
+          "warmup": 5000,
+          "adapt_delta": 0.99,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "C_primary",
+            "model": "C",
+            "variant": "primary",
+            "max_rhat": 1.0021,
+            "min_bulk_ess": 2318.0964,
+            "min_tail_ess": 4487.3867,
+            "max_slope_mcse": 0.0035,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.6018,
+            "passed": true
+          }
+        ],
+        "elapsed_seconds": 603.763,
+        "cache_key": "21a3628c5294d4507a044675f176d6113bdf4303fb357241adf3eb18cc059533"
+      }
+    ]
+  },
+  "P_cv_fold_1": {
+    "label": "P_cv_fold_1",
+    "model": "P",
+    "variant": "cv_fold_1",
+    "settings": {
+      "chains": 4,
+      "iter": 6000,
+      "warmup": 3000,
+      "adapt_delta": 0.95,
+      "max_treedepth": 12,
+      "cores": 4
+    },
+    "seed": 4228,
+    "elapsed_seconds": 0.938,
+    "cache_key": "7762fc634911c3bc208067c957b492c29b9b5c76f26d074c506ab70f9737d1a1",
+    "source_sha256": "6596d1df776f4cbc0462d1bcf78df976ffa8725b6b5597fdf5c6816871e46d03",
+    "implementation_sha256": "5364fe1d9b4c9d26bba59943eb0e0a2d455ba810f25b012610a1d8d86d3e341e",
+    "software_sha256": "a78dc01bb959da12362bce27a18351f88ace7f1e94bb21bca10d682bd8615fc1",
+    "settings_sha256": "8e9548f9959932e2129bd47156f861ca69dcc80eb4ba420f32f97cb041c4c331",
+    "attempts": [
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 6000,
+          "warmup": 3000,
+          "adapt_delta": 0.95,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "P_cv_fold_1",
+            "model": "P",
+            "variant": "cv_fold_1",
+            "max_rhat": 1.0011,
+            "min_bulk_ess": 4770.0301,
+            "min_tail_ess": 5869.9832,
+            "max_slope_mcse": 0.0138,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.9777,
+            "passed": true
+          }
+        ],
+        "elapsed_seconds": 0.938,
+        "cache_key": "7762fc634911c3bc208067c957b492c29b9b5c76f26d074c506ab70f9737d1a1"
+      }
+    ]
+  },
+  "H_cv_fold_1": {
+    "label": "H_cv_fold_1",
+    "model": "H",
+    "variant": "cv_fold_1",
+    "settings": {
+      "chains": 4,
+      "iter": 6000,
+      "warmup": 3000,
+      "adapt_delta": 0.95,
+      "max_treedepth": 12,
+      "cores": 4
+    },
+    "seed": 4229,
+    "elapsed_seconds": 45.765,
+    "cache_key": "01de038cf6008a661970819971aeec8cd18fd8779fb77cfbeb6ae699892e1fae",
+    "source_sha256": "a925d292252abdfd26d6d3f03a34dbdaea852ef9fbb67bbe9f7f254e388921aa",
+    "implementation_sha256": "5364fe1d9b4c9d26bba59943eb0e0a2d455ba810f25b012610a1d8d86d3e341e",
+    "software_sha256": "a78dc01bb959da12362bce27a18351f88ace7f1e94bb21bca10d682bd8615fc1",
+    "settings_sha256": "50250b18319f981f96548da98330d95b1ca52f64dba6f247a6eae7d4a526d275",
+    "attempts": [
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 6000,
+          "warmup": 3000,
+          "adapt_delta": 0.95,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "H_cv_fold_1",
+            "model": "H",
+            "variant": "cv_fold_1",
+            "max_rhat": 1.0031,
+            "min_bulk_ess": 643.2471,
+            "min_tail_ess": 1230.277,
+            "max_slope_mcse": 0.0077,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.6164,
+            "passed": true
+          }
+        ],
+        "elapsed_seconds": 45.765,
+        "cache_key": "01de038cf6008a661970819971aeec8cd18fd8779fb77cfbeb6ae699892e1fae"
+      }
+    ]
+  },
+  "C_cv_fold_1": {
+    "label": "C_cv_fold_1",
+    "model": "C",
+    "variant": "cv_fold_1",
+    "settings": {
+      "chains": 4,
+      "iter": 6000,
+      "warmup": 3000,
+      "adapt_delta": 0.95,
+      "max_treedepth": 12,
+      "cores": 4
+    },
+    "seed": 4230,
+    "elapsed_seconds": 126.38,
+    "cache_key": "7983d08eeb7977f590655a03d1f8ac1511300f20965c95111faefbff452a1705",
+    "source_sha256": "a925d292252abdfd26d6d3f03a34dbdaea852ef9fbb67bbe9f7f254e388921aa",
+    "implementation_sha256": "5364fe1d9b4c9d26bba59943eb0e0a2d455ba810f25b012610a1d8d86d3e341e",
+    "software_sha256": "a78dc01bb959da12362bce27a18351f88ace7f1e94bb21bca10d682bd8615fc1",
+    "settings_sha256": "0da4e27b56aebe1e2aa9f0ef95c2287486bf270ed4ca1db6d698bc2f130d2e4e",
+    "attempts": [
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 6000,
+          "warmup": 3000,
+          "adapt_delta": 0.95,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "C_cv_fold_1",
+            "model": "C",
+            "variant": "cv_fold_1",
+            "max_rhat": 1.0076,
+            "min_bulk_ess": 925.6439,
+            "min_tail_ess": 1789.0378,
+            "max_slope_mcse": 0.0072,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.5999,
+            "passed": true
+          }
+        ],
+        "elapsed_seconds": 126.38,
+        "cache_key": "7983d08eeb7977f590655a03d1f8ac1511300f20965c95111faefbff452a1705"
+      }
+    ]
+  },
+  "P_cv_fold_2": {
+    "label": "P_cv_fold_2",
+    "model": "P",
+    "variant": "cv_fold_2",
+    "settings": {
+      "chains": 4,
+      "iter": 6000,
+      "warmup": 3000,
+      "adapt_delta": 0.95,
+      "max_treedepth": 12,
+      "cores": 4
+    },
+    "seed": 4231,
+    "elapsed_seconds": 1.187,
+    "cache_key": "75342623d5321eb51bae0bb3cadccda5f1ff28e553100a83e0d4e8ab3c7a5cbc",
+    "source_sha256": "6596d1df776f4cbc0462d1bcf78df976ffa8725b6b5597fdf5c6816871e46d03",
+    "implementation_sha256": "5364fe1d9b4c9d26bba59943eb0e0a2d455ba810f25b012610a1d8d86d3e341e",
+    "software_sha256": "a78dc01bb959da12362bce27a18351f88ace7f1e94bb21bca10d682bd8615fc1",
+    "settings_sha256": "6c07c1bbdedc62decafb05ad475583e95fde05c224c9a10149057f83f85001df",
+    "attempts": [
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 6000,
+          "warmup": 3000,
+          "adapt_delta": 0.95,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "P_cv_fold_2",
+            "model": "P",
+            "variant": "cv_fold_2",
+            "max_rhat": 1.0009,
+            "min_bulk_ess": 5056.2088,
+            "min_tail_ess": 5767.5632,
+            "max_slope_mcse": 0.0139,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 1.0278,
+            "passed": true
+          }
+        ],
+        "elapsed_seconds": 1.187,
+        "cache_key": "75342623d5321eb51bae0bb3cadccda5f1ff28e553100a83e0d4e8ab3c7a5cbc"
+      }
+    ]
+  },
+  "H_cv_fold_2": {
+    "label": "H_cv_fold_2",
+    "model": "H",
+    "variant": "cv_fold_2",
+    "settings": {
+      "chains": 4,
+      "iter": 20000,
+      "warmup": 5000,
+      "adapt_delta": 0.99,
+      "max_treedepth": 12,
+      "cores": 4
+    },
+    "seed": 4232,
+    "elapsed_seconds": 292.276,
+    "cache_key": "c7b8e0b753cf2e3e7d710b23d1df0f4b9d4d4ef288e4314bd614a6f81d017798",
+    "source_sha256": "a925d292252abdfd26d6d3f03a34dbdaea852ef9fbb67bbe9f7f254e388921aa",
+    "implementation_sha256": "5364fe1d9b4c9d26bba59943eb0e0a2d455ba810f25b012610a1d8d86d3e341e",
+    "software_sha256": "a78dc01bb959da12362bce27a18351f88ace7f1e94bb21bca10d682bd8615fc1",
+    "settings_sha256": "95db8eeb4b51d379e4590505f865d7811a1dfc8560510e5f5b414dd2735f4af1",
+    "attempts": [
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 6000,
+          "warmup": 3000,
+          "adapt_delta": 0.95,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "H_cv_fold_2",
+            "model": "H",
+            "variant": "cv_fold_2",
+            "max_rhat": 1.0251,
+            "min_bulk_ess": 449.6395,
+            "min_tail_ess": 1006.9161,
+            "max_slope_mcse": 0.0065,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.6173,
+            "passed": false
+          }
+        ],
+        "elapsed_seconds": 55.863,
+        "cache_key": "c0a9266b2c45f97775d2afd62224b6df23cd1ba370fb11ad99845e9ecf3f5535"
+      },
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 10000,
+          "warmup": 5000,
+          "adapt_delta": 0.99,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "H_cv_fold_2",
+            "model": "H",
+            "variant": "cv_fold_2",
+            "max_rhat": 1.0129,
+            "min_bulk_ess": 516.1838,
+            "min_tail_ess": 1257.0749,
+            "max_slope_mcse": 0.005,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.6002,
+            "passed": false
+          }
+        ],
+        "elapsed_seconds": 158.327,
+        "cache_key": "f5f43c4a6bde598e7801a91ba098c368fd230b1375a27288dc26aae43b8ba917"
+      },
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 20000,
+          "warmup": 5000,
+          "adapt_delta": 0.99,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "H_cv_fold_2",
+            "model": "H",
+            "variant": "cv_fold_2",
+            "max_rhat": 1.0013,
+            "min_bulk_ess": 2337.2987,
+            "min_tail_ess": 4740.1558,
+            "max_slope_mcse": 0.0028,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.5905,
+            "passed": true
+          }
+        ],
+        "elapsed_seconds": 292.276,
+        "cache_key": "c7b8e0b753cf2e3e7d710b23d1df0f4b9d4d4ef288e4314bd614a6f81d017798"
+      }
+    ]
+  },
+  "C_cv_fold_2": {
+    "label": "C_cv_fold_2",
+    "model": "C",
+    "variant": "cv_fold_2",
+    "settings": {
+      "chains": 4,
+      "iter": 6000,
+      "warmup": 3000,
+      "adapt_delta": 0.95,
+      "max_treedepth": 12,
+      "cores": 4
+    },
+    "seed": 4233,
+    "elapsed_seconds": 107.016,
+    "cache_key": "fd4425061866ab6e4f78373a123452ec00f2f52d871080db666b6b6cdafb76e8",
+    "source_sha256": "a925d292252abdfd26d6d3f03a34dbdaea852ef9fbb67bbe9f7f254e388921aa",
+    "implementation_sha256": "5364fe1d9b4c9d26bba59943eb0e0a2d455ba810f25b012610a1d8d86d3e341e",
+    "software_sha256": "a78dc01bb959da12362bce27a18351f88ace7f1e94bb21bca10d682bd8615fc1",
+    "settings_sha256": "8cbd08579f6a3f46f6400130360afd14d33d9a071a50e7ead4f3d807b6b39a0d",
+    "attempts": [
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 6000,
+          "warmup": 3000,
+          "adapt_delta": 0.95,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "C_cv_fold_2",
+            "model": "C",
+            "variant": "cv_fold_2",
+            "max_rhat": 1.007,
+            "min_bulk_ess": 735.3434,
+            "min_tail_ess": 1444.4271,
+            "max_slope_mcse": 0.0069,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.5925,
+            "passed": true
+          }
+        ],
+        "elapsed_seconds": 107.016,
+        "cache_key": "fd4425061866ab6e4f78373a123452ec00f2f52d871080db666b6b6cdafb76e8"
+      }
+    ]
+  },
+  "P_cv_fold_3": {
+    "label": "P_cv_fold_3",
+    "model": "P",
+    "variant": "cv_fold_3",
+    "settings": {
+      "chains": 4,
+      "iter": 6000,
+      "warmup": 3000,
+      "adapt_delta": 0.95,
+      "max_treedepth": 12,
+      "cores": 4
+    },
+    "seed": 4234,
+    "elapsed_seconds": 1.123,
+    "cache_key": "efcbec62cad926bb74b18dd798570d50baad8f922a0476be15a7c4856a378715",
+    "source_sha256": "6596d1df776f4cbc0462d1bcf78df976ffa8725b6b5597fdf5c6816871e46d03",
+    "implementation_sha256": "5364fe1d9b4c9d26bba59943eb0e0a2d455ba810f25b012610a1d8d86d3e341e",
+    "software_sha256": "a78dc01bb959da12362bce27a18351f88ace7f1e94bb21bca10d682bd8615fc1",
+    "settings_sha256": "9edebecbbaa22671d2664b357dcacefd1bfa17f730be79fb61dc8e169da15b1e",
+    "attempts": [
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 6000,
+          "warmup": 3000,
+          "adapt_delta": 0.95,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "P_cv_fold_3",
+            "model": "P",
+            "variant": "cv_fold_3",
+            "max_rhat": 1.0005,
+            "min_bulk_ess": 5100.5748,
+            "min_tail_ess": 6282.1036,
+            "max_slope_mcse": 0.0141,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 1.0338,
+            "passed": true
+          }
+        ],
+        "elapsed_seconds": 1.123,
+        "cache_key": "efcbec62cad926bb74b18dd798570d50baad8f922a0476be15a7c4856a378715"
+      }
+    ]
+  },
+  "H_cv_fold_3": {
+    "label": "H_cv_fold_3",
+    "model": "H",
+    "variant": "cv_fold_3",
+    "settings": {
+      "chains": 4,
+      "iter": 10000,
+      "warmup": 5000,
+      "adapt_delta": 0.99,
+      "max_treedepth": 12,
+      "cores": 4
+    },
+    "seed": 4235,
+    "elapsed_seconds": 153.133,
+    "cache_key": "f4f9aa8613420d01ff80901d29c0a10eba2864f7288f75e5aeeb82d46983b682",
+    "source_sha256": "a925d292252abdfd26d6d3f03a34dbdaea852ef9fbb67bbe9f7f254e388921aa",
+    "implementation_sha256": "5364fe1d9b4c9d26bba59943eb0e0a2d455ba810f25b012610a1d8d86d3e341e",
+    "software_sha256": "a78dc01bb959da12362bce27a18351f88ace7f1e94bb21bca10d682bd8615fc1",
+    "settings_sha256": "5ac36dae1d78bc52041028a58dde7ff02f29b207d5675bdeba8c103eed2bbaa8",
+    "attempts": [
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 6000,
+          "warmup": 3000,
+          "adapt_delta": 0.95,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "H_cv_fold_3",
+            "model": "H",
+            "variant": "cv_fold_3",
+            "max_rhat": 1.0128,
+            "min_bulk_ess": 365.3769,
+            "min_tail_ess": 1005.1898,
+            "max_slope_mcse": 0.007,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.6014,
+            "passed": false
+          }
+        ],
+        "elapsed_seconds": 64.898,
+        "cache_key": "aa04e91c4435cef26e2faf532dab24955206b48b5fe5ca346b3e3d6c62f309bb"
+      },
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 10000,
+          "warmup": 5000,
+          "adapt_delta": 0.99,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "H_cv_fold_3",
+            "model": "H",
+            "variant": "cv_fold_3",
+            "max_rhat": 1.0065,
+            "min_bulk_ess": 1124.4939,
+            "min_tail_ess": 2323.9591,
+            "max_slope_mcse": 0.0049,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.5923,
+            "passed": true
+          }
+        ],
+        "elapsed_seconds": 153.133,
+        "cache_key": "f4f9aa8613420d01ff80901d29c0a10eba2864f7288f75e5aeeb82d46983b682"
+      }
+    ]
+  },
+  "C_cv_fold_3": {
+    "label": "C_cv_fold_3",
+    "model": "C",
+    "variant": "cv_fold_3",
+    "settings": {
+      "chains": 4,
+      "iter": 6000,
+      "warmup": 3000,
+      "adapt_delta": 0.95,
+      "max_treedepth": 12,
+      "cores": 4
+    },
+    "seed": 4236,
+    "elapsed_seconds": 157.15,
+    "cache_key": "a2edf95032813ea5a541b6339275f4dba36e2317c7e47b7e858a31d5eb429333",
+    "source_sha256": "a925d292252abdfd26d6d3f03a34dbdaea852ef9fbb67bbe9f7f254e388921aa",
+    "implementation_sha256": "5364fe1d9b4c9d26bba59943eb0e0a2d455ba810f25b012610a1d8d86d3e341e",
+    "software_sha256": "a78dc01bb959da12362bce27a18351f88ace7f1e94bb21bca10d682bd8615fc1",
+    "settings_sha256": "e9d93ee595ac83eaf554d4433827be5aa2d75e22720d904047db98c913d4b4e9",
+    "attempts": [
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 6000,
+          "warmup": 3000,
+          "adapt_delta": 0.95,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "C_cv_fold_3",
+            "model": "C",
+            "variant": "cv_fold_3",
+            "max_rhat": 1.0028,
+            "min_bulk_ess": 1266.901,
+            "min_tail_ess": 2406.8482,
+            "max_slope_mcse": 0.0061,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.6158,
+            "passed": true
+          }
+        ],
+        "elapsed_seconds": 157.15,
+        "cache_key": "a2edf95032813ea5a541b6339275f4dba36e2317c7e47b7e858a31d5eb429333"
+      }
+    ]
+  },
+  "P_cv_fold_4": {
+    "label": "P_cv_fold_4",
+    "model": "P",
+    "variant": "cv_fold_4",
+    "settings": {
+      "chains": 4,
+      "iter": 6000,
+      "warmup": 3000,
+      "adapt_delta": 0.95,
+      "max_treedepth": 12,
+      "cores": 4
+    },
+    "seed": 4237,
+    "elapsed_seconds": 0.947,
+    "cache_key": "140dcbbd1258d74dc2b3bf9e386cd596d0282f948d7a4b3e8a1d2e07492ab8e2",
+    "source_sha256": "6596d1df776f4cbc0462d1bcf78df976ffa8725b6b5597fdf5c6816871e46d03",
+    "implementation_sha256": "5364fe1d9b4c9d26bba59943eb0e0a2d455ba810f25b012610a1d8d86d3e341e",
+    "software_sha256": "a78dc01bb959da12362bce27a18351f88ace7f1e94bb21bca10d682bd8615fc1",
+    "settings_sha256": "ad5a43642c1c27b8cb2d3413784972afbabc671ba69dc6823cd6dc3560810b2a",
+    "attempts": [
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 6000,
+          "warmup": 3000,
+          "adapt_delta": 0.95,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "P_cv_fold_4",
+            "model": "P",
+            "variant": "cv_fold_4",
+            "max_rhat": 1.0003,
+            "min_bulk_ess": 4716.7991,
+            "min_tail_ess": 5478.1347,
+            "max_slope_mcse": 0.0154,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.9805,
+            "passed": true
+          }
+        ],
+        "elapsed_seconds": 0.947,
+        "cache_key": "140dcbbd1258d74dc2b3bf9e386cd596d0282f948d7a4b3e8a1d2e07492ab8e2"
+      }
+    ]
+  },
+  "H_cv_fold_4": {
+    "label": "H_cv_fold_4",
+    "model": "H",
+    "variant": "cv_fold_4",
+    "settings": {
+      "chains": 4,
+      "iter": 6000,
+      "warmup": 3000,
+      "adapt_delta": 0.95,
+      "max_treedepth": 12,
+      "cores": 4
+    },
+    "seed": 4238,
+    "elapsed_seconds": 45.085,
+    "cache_key": "e703dd1533cdf19c7c40c0f378615bc37874dbf3a49a6fa1c41b21a2b66a098c",
+    "source_sha256": "a925d292252abdfd26d6d3f03a34dbdaea852ef9fbb67bbe9f7f254e388921aa",
+    "implementation_sha256": "5364fe1d9b4c9d26bba59943eb0e0a2d455ba810f25b012610a1d8d86d3e341e",
+    "software_sha256": "a78dc01bb959da12362bce27a18351f88ace7f1e94bb21bca10d682bd8615fc1",
+    "settings_sha256": "499423afc2dcabcfedc36906542261ef6fcef0a11734e4e74a32f0b32fd1e7bb",
+    "attempts": [
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 6000,
+          "warmup": 3000,
+          "adapt_delta": 0.95,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "H_cv_fold_4",
+            "model": "H",
+            "variant": "cv_fold_4",
+            "max_rhat": 1.0048,
+            "min_bulk_ess": 593.9513,
+            "min_tail_ess": 1294.0856,
+            "max_slope_mcse": 0.0054,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.5742,
+            "passed": true
+          }
+        ],
+        "elapsed_seconds": 45.085,
+        "cache_key": "e703dd1533cdf19c7c40c0f378615bc37874dbf3a49a6fa1c41b21a2b66a098c"
+      }
+    ]
+  },
+  "C_cv_fold_4": {
+    "label": "C_cv_fold_4",
+    "model": "C",
+    "variant": "cv_fold_4",
+    "settings": {
+      "chains": 4,
+      "iter": 6000,
+      "warmup": 3000,
+      "adapt_delta": 0.95,
+      "max_treedepth": 12,
+      "cores": 4
+    },
+    "seed": 4239,
+    "elapsed_seconds": 130.851,
+    "cache_key": "eb24344ba7b606e28cfa7e4d86c74535afa2657bac963530f378616fa2cdf1a3",
+    "source_sha256": "a925d292252abdfd26d6d3f03a34dbdaea852ef9fbb67bbe9f7f254e388921aa",
+    "implementation_sha256": "5364fe1d9b4c9d26bba59943eb0e0a2d455ba810f25b012610a1d8d86d3e341e",
+    "software_sha256": "a78dc01bb959da12362bce27a18351f88ace7f1e94bb21bca10d682bd8615fc1",
+    "settings_sha256": "087b2018e0859bcba9b326c5b195b86f54f42c9d719f3711f98e0910d9e9d21e",
+    "attempts": [
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 6000,
+          "warmup": 3000,
+          "adapt_delta": 0.95,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "C_cv_fold_4",
+            "model": "C",
+            "variant": "cv_fold_4",
+            "max_rhat": 1.004,
+            "min_bulk_ess": 1069.438,
+            "min_tail_ess": 1839.4337,
+            "max_slope_mcse": 0.005,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.5806,
+            "passed": true
+          }
+        ],
+        "elapsed_seconds": 130.851,
+        "cache_key": "eb24344ba7b606e28cfa7e4d86c74535afa2657bac963530f378616fa2cdf1a3"
+      }
+    ]
+  },
+  "P_cv_fold_5": {
+    "label": "P_cv_fold_5",
+    "model": "P",
+    "variant": "cv_fold_5",
+    "settings": {
+      "chains": 4,
+      "iter": 6000,
+      "warmup": 3000,
+      "adapt_delta": 0.95,
+      "max_treedepth": 12,
+      "cores": 4
+    },
+    "seed": 4240,
+    "elapsed_seconds": 0.96,
+    "cache_key": "67f8e3c852ce5e34c029aea4aa226f822f47ed02609332cd8f022c679fc17855",
+    "source_sha256": "6596d1df776f4cbc0462d1bcf78df976ffa8725b6b5597fdf5c6816871e46d03",
+    "implementation_sha256": "5364fe1d9b4c9d26bba59943eb0e0a2d455ba810f25b012610a1d8d86d3e341e",
+    "software_sha256": "a78dc01bb959da12362bce27a18351f88ace7f1e94bb21bca10d682bd8615fc1",
+    "settings_sha256": "5190de5dd7d40e7d80f674caed9a31acae49a8b6e0beceaa7bc07086b5cf3146",
+    "attempts": [
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 6000,
+          "warmup": 3000,
+          "adapt_delta": 0.95,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "P_cv_fold_5",
+            "model": "P",
+            "variant": "cv_fold_5",
+            "max_rhat": 1.0008,
+            "min_bulk_ess": 4762.8329,
+            "min_tail_ess": 5477.6008,
+            "max_slope_mcse": 0.0144,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.9548,
+            "passed": true
+          }
+        ],
+        "elapsed_seconds": 0.96,
+        "cache_key": "67f8e3c852ce5e34c029aea4aa226f822f47ed02609332cd8f022c679fc17855"
+      }
+    ]
+  },
+  "H_cv_fold_5": {
+    "label": "H_cv_fold_5",
+    "model": "H",
+    "variant": "cv_fold_5",
+    "settings": {
+      "chains": 4,
+      "iter": 10000,
+      "warmup": 5000,
+      "adapt_delta": 0.99,
+      "max_treedepth": 12,
+      "cores": 4
+    },
+    "seed": 4241,
+    "elapsed_seconds": 189.559,
+    "cache_key": "00e5d926f243a478df5ea4035cf8404fe50c6509ca59ed2f3b910c432744665a",
+    "source_sha256": "a925d292252abdfd26d6d3f03a34dbdaea852ef9fbb67bbe9f7f254e388921aa",
+    "implementation_sha256": "5364fe1d9b4c9d26bba59943eb0e0a2d455ba810f25b012610a1d8d86d3e341e",
+    "software_sha256": "a78dc01bb959da12362bce27a18351f88ace7f1e94bb21bca10d682bd8615fc1",
+    "settings_sha256": "4f46bbd3a5ea086a2f8cb4405696cfa0d8432e10a5bb50a4547a3726c5dfecc3",
+    "attempts": [
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 6000,
+          "warmup": 3000,
+          "adapt_delta": 0.95,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "H_cv_fold_5",
+            "model": "H",
+            "variant": "cv_fold_5",
+            "max_rhat": 1.0078,
+            "min_bulk_ess": 366.6359,
+            "min_tail_ess": 474.969,
+            "max_slope_mcse": 0.0095,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.5977,
+            "passed": false
+          }
+        ],
+        "elapsed_seconds": 43.74,
+        "cache_key": "69b24279b6fcaf1cb7941af13136828dba866c69cd264d36ccca85bf3a18507a"
+      },
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 10000,
+          "warmup": 5000,
+          "adapt_delta": 0.99,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "H_cv_fold_5",
+            "model": "H",
+            "variant": "cv_fold_5",
+            "max_rhat": 1.004,
+            "min_bulk_ess": 755.1252,
+            "min_tail_ess": 1519.2128,
+            "max_slope_mcse": 0.0068,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.6091,
+            "passed": true
+          }
+        ],
+        "elapsed_seconds": 189.559,
+        "cache_key": "00e5d926f243a478df5ea4035cf8404fe50c6509ca59ed2f3b910c432744665a"
+      }
+    ]
+  },
+  "C_cv_fold_5": {
+    "label": "C_cv_fold_5",
+    "model": "C",
+    "variant": "cv_fold_5",
+    "settings": {
+      "chains": 4,
+      "iter": 6000,
+      "warmup": 3000,
+      "adapt_delta": 0.95,
+      "max_treedepth": 12,
+      "cores": 4
+    },
+    "seed": 4242,
+    "elapsed_seconds": 133.338,
+    "cache_key": "bad892240d520a41815a7b67d6e484ca043d4ba05aeb50cd66f9a0d42f4e00be",
+    "source_sha256": "a925d292252abdfd26d6d3f03a34dbdaea852ef9fbb67bbe9f7f254e388921aa",
+    "implementation_sha256": "5364fe1d9b4c9d26bba59943eb0e0a2d455ba810f25b012610a1d8d86d3e341e",
+    "software_sha256": "a78dc01bb959da12362bce27a18351f88ace7f1e94bb21bca10d682bd8615fc1",
+    "settings_sha256": "f77d62dee7b3314cc180da3700776506b34aa07e3aceb82cf1075be8bac51a58",
+    "attempts": [
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 6000,
+          "warmup": 3000,
+          "adapt_delta": 0.95,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "C_cv_fold_5",
+            "model": "C",
+            "variant": "cv_fold_5",
+            "max_rhat": 1.0055,
+            "min_bulk_ess": 708.6908,
+            "min_tail_ess": 1066.7509,
+            "max_slope_mcse": 0.0083,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.6082,
+            "passed": true
+          }
+        ],
+        "elapsed_seconds": 133.338,
+        "cache_key": "bad892240d520a41815a7b67d6e484ca043d4ba05aeb50cd66f9a0d42f4e00be"
+      }
+    ]
+  },
+  "H_prior_half": {
+    "label": "H_prior_half",
+    "model": "H",
+    "variant": "prior_half",
+    "settings": {
+      "chains": 4,
+      "iter": 6000,
+      "warmup": 3000,
+      "adapt_delta": 0.95,
+      "max_treedepth": 12,
+      "cores": 4
+    },
+    "seed": 4243,
+    "elapsed_seconds": 75.381,
+    "cache_key": "a3cd9cb8627c3bf10aa06615cb330e99ff80184ea89d350f4676223a0d73eeab",
+    "source_sha256": "a925d292252abdfd26d6d3f03a34dbdaea852ef9fbb67bbe9f7f254e388921aa",
+    "implementation_sha256": "5364fe1d9b4c9d26bba59943eb0e0a2d455ba810f25b012610a1d8d86d3e341e",
+    "software_sha256": "a78dc01bb959da12362bce27a18351f88ace7f1e94bb21bca10d682bd8615fc1",
+    "settings_sha256": "a89326388d07a668fd128b444a935ee47a8b5bf6b0f7b11e38ff815c8a94d030",
+    "attempts": [
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 6000,
+          "warmup": 3000,
+          "adapt_delta": 0.95,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "H_prior_half",
+            "model": "H",
+            "variant": "prior_half",
+            "max_rhat": 1.0051,
+            "min_bulk_ess": 481.4528,
+            "min_tail_ess": 1108.7209,
+            "max_slope_mcse": 0.006,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.5509,
+            "passed": true
+          }
+        ],
+        "elapsed_seconds": 75.381,
+        "cache_key": "a3cd9cb8627c3bf10aa06615cb330e99ff80184ea89d350f4676223a0d73eeab"
+      }
+    ]
+  },
+  "C_prior_half": {
+    "label": "C_prior_half",
+    "model": "C",
+    "variant": "prior_half",
+    "settings": {
+      "chains": 4,
+      "iter": 6000,
+      "warmup": 3000,
+      "adapt_delta": 0.95,
+      "max_treedepth": 12,
+      "cores": 4
+    },
+    "seed": 4244,
+    "elapsed_seconds": 131.235,
+    "cache_key": "e5ae318a3339832d90319b321b8bd36916329b8d90ca7c59ea7c89f890169421",
+    "source_sha256": "a925d292252abdfd26d6d3f03a34dbdaea852ef9fbb67bbe9f7f254e388921aa",
+    "implementation_sha256": "5364fe1d9b4c9d26bba59943eb0e0a2d455ba810f25b012610a1d8d86d3e341e",
+    "software_sha256": "a78dc01bb959da12362bce27a18351f88ace7f1e94bb21bca10d682bd8615fc1",
+    "settings_sha256": "9ffebacba2e5c377bedbab0bf5540c8d1b9cf45b7194b3a28def533eeedb321e",
+    "attempts": [
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 6000,
+          "warmup": 3000,
+          "adapt_delta": 0.95,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "C_prior_half",
+            "model": "C",
+            "variant": "prior_half",
+            "max_rhat": 1.0083,
+            "min_bulk_ess": 750.4372,
+            "min_tail_ess": 1555.2774,
+            "max_slope_mcse": 0.0058,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.591,
+            "passed": true
+          }
+        ],
+        "elapsed_seconds": 131.235,
+        "cache_key": "e5ae318a3339832d90319b321b8bd36916329b8d90ca7c59ea7c89f890169421"
+      }
+    ]
+  },
+  "H_prior_double": {
+    "label": "H_prior_double",
+    "model": "H",
+    "variant": "prior_double",
+    "settings": {
+      "chains": 4,
+      "iter": 10000,
+      "warmup": 5000,
+      "adapt_delta": 0.99,
+      "max_treedepth": 12,
+      "cores": 4
+    },
+    "seed": 4245,
+    "elapsed_seconds": 197.318,
+    "cache_key": "8e05b2e5abe2c49a4e30c48829508a229f247e0c7bdc049a568b456fed1afd70",
+    "source_sha256": "a925d292252abdfd26d6d3f03a34dbdaea852ef9fbb67bbe9f7f254e388921aa",
+    "implementation_sha256": "5364fe1d9b4c9d26bba59943eb0e0a2d455ba810f25b012610a1d8d86d3e341e",
+    "software_sha256": "a78dc01bb959da12362bce27a18351f88ace7f1e94bb21bca10d682bd8615fc1",
+    "settings_sha256": "63da6918251e9f21b25752c1e28cdfba75cac4d4fd19a14f7b1508616c6a8265",
+    "attempts": [
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 6000,
+          "warmup": 3000,
+          "adapt_delta": 0.95,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "H_prior_double",
+            "model": "H",
+            "variant": "prior_double",
+            "max_rhat": 1.0127,
+            "min_bulk_ess": 365.3432,
+            "min_tail_ess": 638.4657,
+            "max_slope_mcse": 0.0063,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.5814,
+            "passed": false
+          }
+        ],
+        "elapsed_seconds": 57.488,
+        "cache_key": "4e2cf173e220ab421dff94dcecf25420c0784a2a3acb79ce190de8b80ebe0768"
+      },
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 10000,
+          "warmup": 5000,
+          "adapt_delta": 0.99,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "H_prior_double",
+            "model": "H",
+            "variant": "prior_double",
+            "max_rhat": 1.0059,
+            "min_bulk_ess": 583.2714,
+            "min_tail_ess": 1233.0991,
+            "max_slope_mcse": 0.0057,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.5883,
+            "passed": true
+          }
+        ],
+        "elapsed_seconds": 197.318,
+        "cache_key": "8e05b2e5abe2c49a4e30c48829508a229f247e0c7bdc049a568b456fed1afd70"
+      }
+    ]
+  },
+  "C_prior_double": {
+    "label": "C_prior_double",
+    "model": "C",
+    "variant": "prior_double",
+    "settings": {
+      "chains": 4,
+      "iter": 10000,
+      "warmup": 5000,
+      "adapt_delta": 0.99,
+      "max_treedepth": 14,
+      "cores": 4
+    },
+    "seed": 4246,
+    "elapsed_seconds": 511.46,
+    "cache_key": "23af96c577693435a9b0d09388f7e26e2c767fef01f790b6d7a9f6eff83d82c3",
+    "source_sha256": "a925d292252abdfd26d6d3f03a34dbdaea852ef9fbb67bbe9f7f254e388921aa",
+    "implementation_sha256": "5364fe1d9b4c9d26bba59943eb0e0a2d455ba810f25b012610a1d8d86d3e341e",
+    "software_sha256": "a78dc01bb959da12362bce27a18351f88ace7f1e94bb21bca10d682bd8615fc1",
+    "settings_sha256": "4a104efa68663c7da891932c9a3664571506a8ad83b28bf26264fd938f3f7131",
+    "attempts": [
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 6000,
+          "warmup": 3000,
+          "adapt_delta": 0.95,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "C_prior_double",
+            "model": "C",
+            "variant": "prior_double",
+            "max_rhat": 1.0144,
+            "min_bulk_ess": 605.5185,
+            "min_tail_ess": 1069.2749,
+            "max_slope_mcse": 0.0064,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.5585,
+            "passed": false
+          }
+        ],
+        "elapsed_seconds": 119.706,
+        "cache_key": "1ff46387b1994627b8dd269c29b5fa5c44d446c8577f5ba0889eec407cadb6e1"
+      },
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 10000,
+          "warmup": 5000,
+          "adapt_delta": 0.99,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "C_prior_double",
+            "model": "C",
+            "variant": "prior_double",
+            "max_rhat": 1.0032,
+            "min_bulk_ess": 1490.7576,
+            "min_tail_ess": 2987.9637,
+            "max_slope_mcse": 0.0045,
+            "divergences": 0,
+            "treedepth_hits": 3,
+            "min_ebfmi": 0.594,
+            "passed": false
+          }
+        ],
+        "elapsed_seconds": 547.597,
+        "cache_key": "66119699db5000d877e11afa40077ac57c6fa6ab4a55f4e6d640313766db51ac"
+      },
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 10000,
+          "warmup": 5000,
+          "adapt_delta": 0.99,
+          "max_treedepth": 14,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "C_prior_double",
+            "model": "C",
+            "variant": "prior_double",
+            "max_rhat": 1.0035,
+            "min_bulk_ess": 1663.165,
+            "min_tail_ess": 3363.9503,
+            "max_slope_mcse": 0.0041,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.5926,
+            "passed": true
+          }
+        ],
+        "elapsed_seconds": 511.46,
+        "cache_key": "23af96c577693435a9b0d09388f7e26e2c767fef01f790b6d7a9f6eff83d82c3"
+      }
+    ]
+  },
+  "H_all_rows": {
+    "label": "H_all_rows",
+    "model": "H",
+    "variant": "all_rows",
+    "settings": {
+      "chains": 4,
+      "iter": 20000,
+      "warmup": 5000,
+      "adapt_delta": 0.99,
+      "max_treedepth": 12,
+      "cores": 4
+    },
+    "seed": 4247,
+    "elapsed_seconds": 306.897,
+    "cache_key": "426f6eaca370818b861bca49751289eb37e8a8e5b4ebe1ee48f46135da6d4c1a",
+    "source_sha256": "a925d292252abdfd26d6d3f03a34dbdaea852ef9fbb67bbe9f7f254e388921aa",
+    "implementation_sha256": "5364fe1d9b4c9d26bba59943eb0e0a2d455ba810f25b012610a1d8d86d3e341e",
+    "software_sha256": "a78dc01bb959da12362bce27a18351f88ace7f1e94bb21bca10d682bd8615fc1",
+    "settings_sha256": "7802724e5bbb30017684a7d963666268bb85adf1b212bc77526731ba51671870",
+    "attempts": [
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 6000,
+          "warmup": 3000,
+          "adapt_delta": 0.95,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "H_all_rows",
+            "model": "H",
+            "variant": "all_rows",
+            "max_rhat": 1.0132,
+            "min_bulk_ess": 402.5781,
+            "min_tail_ess": 679.5696,
+            "max_slope_mcse": 0.007,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.5769,
+            "passed": false
+          }
+        ],
+        "elapsed_seconds": 67.63,
+        "cache_key": "dfa5397daa12cbb6b72f009296f8177b747ef65e264ce008feaa6eb2e3d3e4be"
+      },
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 10000,
+          "warmup": 5000,
+          "adapt_delta": 0.99,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "H_all_rows",
+            "model": "H",
+            "variant": "all_rows",
+            "max_rhat": 1.0103,
+            "min_bulk_ess": 495.9931,
+            "min_tail_ess": 744.1871,
+            "max_slope_mcse": 0.006,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.5911,
+            "passed": false
+          }
+        ],
+        "elapsed_seconds": 186.176,
+        "cache_key": "6a8c66fde238eab66a49f0c38e2a550335e8f253a2e14587f810bc575c34e20b"
+      },
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 20000,
+          "warmup": 5000,
+          "adapt_delta": 0.99,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "H_all_rows",
+            "model": "H",
+            "variant": "all_rows",
+            "max_rhat": 1.004,
+            "min_bulk_ess": 1176.0843,
+            "min_tail_ess": 2372.3997,
+            "max_slope_mcse": 0.0034,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.5978,
+            "passed": true
+          }
+        ],
+        "elapsed_seconds": 306.897,
+        "cache_key": "426f6eaca370818b861bca49751289eb37e8a8e5b4ebe1ee48f46135da6d4c1a"
+      }
+    ]
+  },
+  "C_all_rows": {
+    "label": "C_all_rows",
+    "model": "C",
+    "variant": "all_rows",
+    "settings": {
+      "chains": 4,
+      "iter": 6000,
+      "warmup": 3000,
+      "adapt_delta": 0.95,
+      "max_treedepth": 12,
+      "cores": 4
+    },
+    "seed": 4248,
+    "elapsed_seconds": 186.104,
+    "cache_key": "dd63fa1fa1a0b46e98e8299bd820172c284432614c659c2efda7763abd67608a",
+    "source_sha256": "a925d292252abdfd26d6d3f03a34dbdaea852ef9fbb67bbe9f7f254e388921aa",
+    "implementation_sha256": "5364fe1d9b4c9d26bba59943eb0e0a2d455ba810f25b012610a1d8d86d3e341e",
+    "software_sha256": "a78dc01bb959da12362bce27a18351f88ace7f1e94bb21bca10d682bd8615fc1",
+    "settings_sha256": "7c0e9c64d5bd00a43d540c7c31fa9f3b2d9d3ec498e2df5da4a27ab441e98135",
+    "attempts": [
+      {
+        "settings": {
+          "chains": 4,
+          "iter": 6000,
+          "warmup": 3000,
+          "adapt_delta": 0.95,
+          "max_treedepth": 12,
+          "cores": 4
+        },
+        "diagnostics": [
+          {
+            "run": "C_all_rows",
+            "model": "C",
+            "variant": "all_rows",
+            "max_rhat": 1.0079,
+            "min_bulk_ess": 706.5654,
+            "min_tail_ess": 1778.3599,
+            "max_slope_mcse": 0.0058,
+            "divergences": 0,
+            "treedepth_hits": 0,
+            "min_ebfmi": 0.5705,
+            "passed": true
+          }
+        ],
+        "elapsed_seconds": 186.104,
+        "cache_key": "dd63fa1fa1a0b46e98e8299bd820172c284432614c659c2efda7763abd67608a"
+      }
+    ]
+  }
+}
