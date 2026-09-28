@@ -1,0 +1,5 @@
+# CI-only compiler settings: retain optimization while limiting template memory.
+CXXFLAGS = -O1 -g0
+CXX11FLAGS = -O1 -g0
+CXX14FLAGS = -O1 -g0
+CXX17FLAGS = -O1 -g0
