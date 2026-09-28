@@ -19,7 +19,7 @@ jobs:
           use-public-rspm: true
       - uses: r-lib/actions/setup-tinytex@v2
       - name: Standard report packages
-        run: tlmgr install geometry lmodern amsmath amsfonts booktabs tools hyperref
+        run: tlmgr install geometry lm amsmath amsfonts booktabs tools hyperref
       - uses: r-lib/actions/setup-renv@v2
       - name: Unit and numerical tests
         run: Rscript tests/run_tests.R
